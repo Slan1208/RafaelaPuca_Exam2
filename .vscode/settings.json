@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Progra1_Seccion2-main.sln"
+    "dotnet.defaultSolution": "RafaelaPuca_Exam2.sln"
 }

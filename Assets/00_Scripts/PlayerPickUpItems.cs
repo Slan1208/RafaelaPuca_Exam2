@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private int exp = 10;
-    
+    public FoodItem foodItem;
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -11,15 +12,14 @@ public class PlayerInteraction : MonoBehaviour
         // Check for Experience Item
         if (other.CompareTag("Experience"))
         {
-            GameManager.instance.GetExperience(10);
+            GameManager.instance.GetExperience(exp);
             Destroy(other.gameObject);
         }
         // Check for Food Item
         else if (other.CompareTag("Food"))
         {
-            // foodItems += 1; // Add food to inventory
-            // Debug.Log($"Picked up food! Total: {foodItems}");
-            // Destroy(other.gameObject); // Remove the item
+            InventoryManager.instance.AddItem(foodItem);
+            Destroy(other.gameObject);
         }
     }
 }

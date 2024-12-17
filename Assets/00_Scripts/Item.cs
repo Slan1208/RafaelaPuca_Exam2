@@ -1,17 +1,13 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Item
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
+public class Item : ScriptableObject
 {
-    public string itemName; // Nombre del ítem
-    public string description; // Descripción del ítem
-    // imagen del ítem
-    public Sprite icon; //Icono o imagen para representar el item en la UI
+    public string itemName;      // Name of the item
+    public Sprite icon;          // Icon for the item
 
-    public Item(string name, string desc, Sprite iconSprite)
+    public virtual void Use()
     {
-        itemName = name;
-        description = desc;
-        icon = iconSprite; 
+        Debug.Log("Using item: " + itemName);
     }
 }
