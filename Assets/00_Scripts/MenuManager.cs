@@ -18,6 +18,6 @@ public class MenuManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quitting Game...");
-        Application.Quit(); // Exits the application (won't work in the editor)
+        Application.Quit();
     } 
 }

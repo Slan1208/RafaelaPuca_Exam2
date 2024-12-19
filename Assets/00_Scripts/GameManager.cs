@@ -5,7 +5,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public LevelUpDisplay levelUpDisplay; // Reference to the LevelUpDisplay script
+    public LevelUpDisplay levelUpDisplay;
 
     public int level = 1;
     public int maxHealth = 100;
@@ -83,6 +83,6 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quitting Game...");
-        Application.Quit(); // Exits the application (won't work in the editor)
+        Application.Quit();
     } 
 }

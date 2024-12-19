@@ -7,13 +7,13 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
 
-    public List<Item> inventory = new List<Item>(); // List to hold inventory items
-    public GameObject inventoryUI; // Main Inventory UI panel
-    public GameObject itemSlotPrefab; // Prefab for item slots
-    public TMP_Text inventoryText; // Reference to the TextMeshPro UI element
+    public List<Item> inventory = new List<Item>();
+    public GameObject inventoryUI;
+    public GameObject itemSlotPrefab;
+    public TMP_Text inventoryText;
 
     private bool isInventoryOpen = false;
-    private List<GameObject> displayedSlots = new List<GameObject>(); // To track displayed slots
+    private List<GameObject> displayedSlots = new List<GameObject>();
 
     private void Awake()
     {
@@ -25,22 +25,21 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        // Toggle Inventory with 'I'
         if (Input.GetKeyDown(KeyCode.I))
         {
             isInventoryOpen = !isInventoryOpen;
             if (isInventoryOpen) {
                 inventoryUI.SetActive(true);
                 inventoryText.gameObject.SetActive(true);
-                Time.timeScale = 0f; // Pause game time
-                Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-                Cursor.visible = true; // Make the cursor visible
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             } else {
                 inventoryUI.SetActive(false);
                 inventoryText.gameObject.SetActive(false);
-                Time.timeScale = 1f; // Resume game time
-                Cursor.lockState = CursorLockMode.Locked; // Lock the cursor back to the center
-                Cursor.visible = false; // Hide the cursor
+                Time.timeScale = 1f;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             
             if (isInventoryOpen)
@@ -63,28 +62,22 @@ public class InventoryManager : MonoBehaviour
         }
         displayedSlots.Clear();
 
-        // Populate inventory UI
         foreach (Item item in inventory)
         {
-            // Create a new slot and parent it to the InventoryUI
             GameObject slot = Instantiate(itemSlotPrefab, inventoryUI.transform);
 
-            // Find the Image and TextMeshProUGUI components
             Image icon = slot.GetComponentInChildren<Image>();
             TextMeshProUGUI itemName = slot.GetComponentInChildren<TextMeshProUGUI>();
             Button button = slot.GetComponentInChildren<Button>(); // Get the Button component
 
-            // Assign values from the item
             if (icon != null) icon.sprite = item.icon;
             if (itemName != null) itemName.text = item.itemName;
 
-            // Add a click listener to use the item
             button.onClick.AddListener(() => {
                 Debug.Log("event listener added");
                 UseItem(item);
             });
 
-            // Keep track of displayed slots
             displayedSlots.Add(slot);
         }
     }

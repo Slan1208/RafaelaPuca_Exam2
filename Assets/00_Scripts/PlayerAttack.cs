@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Camera playerCamera; // Reference to the player's camera
-    public float attackRange = 3f; // Range of the attack
-    public int attackDamage = 20; // Damage per attack
+    public Camera playerCamera;
+    public float attackRange = 3f;
+    public int attackDamage = 20;
     
 
-    public LayerMask attackableLayers; // Layers that can be attacked
-    public float attackCooldown = 0.5f; // Cooldown time between attacks
+    public LayerMask attackableLayers;
+    public float attackCooldown = 0.5f;
 
-    private float nextAttackTime = 0f; // Tracks when the player can attack again
+    private float nextAttackTime = 0f;
 
     void Update()
     {
@@ -23,10 +23,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        // Play attack animation (if applicable)
         Debug.Log("Player attacks!");
 
-        // Cast a ray from the center of the screen
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
 
@@ -34,7 +32,6 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("Hit: " + hit.collider.name);
 
-            // Check if the hit object has a damageable component
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
             if (damageable != null)
             {

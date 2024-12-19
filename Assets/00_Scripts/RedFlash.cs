@@ -13,7 +13,7 @@ public class RedFlash : MonoBehaviour
         {
             Color color = redFlashImage.color;
             color.a = 0;
-            redFlashImage.color = color; // Ensure it's invisible at start
+            redFlashImage.color = color;
         }
     }
 
@@ -38,7 +38,6 @@ public class RedFlash : MonoBehaviour
             yield return null;
         }
 
-        // Ensure it's invisible after the flash
         Color finalColor = redFlashImage.color;
         finalColor.a = 0;
         redFlashImage.color = finalColor;

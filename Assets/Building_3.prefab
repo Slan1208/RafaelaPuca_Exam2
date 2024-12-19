@@ -119,12 +119,13 @@ MonoBehaviour:
   debrisPrefab: {fileID: 1582217619816085494, guid: f388dfaa5a3fce647b1c77cb1615d6e4,
     type: 3}
   debrisCount: 30
-  debrisSpawnRadius: 50
+  debrisSpawnRadius: 10
   dropItems:
   - {fileID: 5286275495433772060, guid: dd3823f1b158d82438d4704c4a59d436, type: 3}
   - {fileID: 5286275495433772060, guid: dd3823f1b158d82438d4704c4a59d436, type: 3}
   - {fileID: 8298970874779345038, guid: b0086246acdd5654c8273378b75cd9ad, type: 3}
   - {fileID: 2999766850697199609, guid: 6295ee7e47b980e4a877dcd7de4f25e3, type: 3}
+  redFlash: {fileID: 0}
 --- !u!65 &-3422179470447773240
 BoxCollider:
   m_ObjectHideFlags: 0

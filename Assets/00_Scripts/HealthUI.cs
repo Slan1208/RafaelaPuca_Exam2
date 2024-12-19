@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Import this if you're using TextMeshPro
-
+using TMPro;
 public class HealthUI : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;

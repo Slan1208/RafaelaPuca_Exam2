@@ -3,11 +3,11 @@ using System.Collections;
 
 public class DamageZone : MonoBehaviour
 {
-    [SerializeField] private int damagePerTick = 5;   // Damage dealt per tick
-    [SerializeField] private float damageInterval = 1f; // Interval in seconds between damage
-    [SerializeField] private RedFlash redFlash;      // Reference to the RedFlash script
+    [SerializeField] private int damagePerTick = 5;
+    [SerializeField] private float damageInterval = 1f;
+    [SerializeField] private RedFlash redFlash;
 
-    private bool playerInside = false; // Tracks if the player is inside the zone
+    private bool playerInside = false;
     private Coroutine damageCoroutine;
 
     private void OnTriggerEnter(Collider other)
@@ -23,10 +23,8 @@ public class DamageZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Stop dealing damage when the player exits
             playerInside = false;
 
-            // Stop the damage coroutine if it’s running
             if (damageCoroutine != null)
             {
                 StopCoroutine(damageCoroutine);

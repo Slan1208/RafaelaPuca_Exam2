@@ -35,40 +35,47 @@ public class Building : MonoBehaviour, IDamageable
 
     private void SpawnDebris()
     {
+        Collider buildingCollider = GetComponent<Collider>();
+        if (buildingCollider == null)
+        {
+            Debug.LogWarning("Building does not have a collider!");
+            return;
+        }
+
+        Vector3 buildingCenter = buildingCollider.bounds.center;
+        Vector3 buildingSize = buildingCollider.bounds.extents;
+
         for (int i = 0; i < debrisCount; i++)
         {
-            // Generate a random position near the building
-            Vector3 randomPosition = transform.position + Random.insideUnitSphere * debrisSpawnRadius;
+            Vector3 randomDirection = Random.onUnitSphere;
+            randomDirection.y = Mathf.Abs(randomDirection.y);
 
-            // Instantiate a debris prefab at the random position
-            GameObject debris = Instantiate(debrisPrefab, randomPosition, Random.rotation);
+            Vector3 spawnPosition = buildingCenter + randomDirection * (buildingSize.magnitude + debrisSpawnRadius);
 
-            // Add a random force to the debris for explosion effect
+            GameObject debris = Instantiate(debrisPrefab, spawnPosition, Random.rotation);
+
             Rigidbody rb = debris.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                Vector3 randomForce = Random.insideUnitSphere * 5f; // Adjust force magnitude as needed
+                Vector3 randomForce = randomDirection * Random.Range(5f, 10f);
                 rb.AddForce(randomForce, ForceMode.Impulse);
             }
         }
     }
     private void TryDropItem()
     {
-        // Ensure there are items in the array
         if (dropItems == null || dropItems.Length == 0)
         {
             Debug.LogWarning("Drop items array is empty!");
             return;
         }
 
-        // 80% chance to drop an item
-        if (Random.value <= 0.8f) // 80% chance to drop
+        if (Random.value <= 0.8f)
         {
             int randomIndex = Random.Range(0, dropItems.Length);
             GameObject selectedItem = dropItems[randomIndex];
 
-            // Spawn the item slightly above the building
-            Vector3 spawnPosition = transform.position + Vector3.up * 15f; // Adjust height as needed
+            Vector3 spawnPosition = transform.position + Vector3.up * 15f;
             Instantiate(selectedItem, spawnPosition, Quaternion.identity);
 
             Debug.Log($"Dropped item: {selectedItem.name}");

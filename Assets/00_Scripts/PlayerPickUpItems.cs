@@ -9,13 +9,11 @@ public class PlayerInteraction : MonoBehaviour
     {
 
         Debug.Log("collided with item");
-        // Check for Experience Item
         if (other.CompareTag("Experience"))
         {
             GameManager.instance.GetExperience(exp);
             Destroy(other.gameObject);
         }
-        // Check for Food Item
         else if (other.CompareTag("Food"))
         {
             InventoryManager.instance.AddItem(foodItem);

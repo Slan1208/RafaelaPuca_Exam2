@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
-    public GameObject pauseMenu; // Assign the PauseMenu canvas in the Inspector
+    public GameObject pauseMenu;
     private bool isPaused = false;
 
     void Update()
     {
-        // Check for the P key
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
@@ -24,18 +23,18 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         isPaused = true;
-        pauseMenu.SetActive(true); // Show the pause menu
-        Time.timeScale = 0f; // Pause game time
-        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-        Cursor.visible = true; // Make the cursor visible
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ResumeGame()
     {
         isPaused = false;
-        pauseMenu.SetActive(false); // Hide the pause menu
-        Time.timeScale = 1f; // Resume game time
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor back to the center
-        Cursor.visible = false; // Hide the cursor
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
